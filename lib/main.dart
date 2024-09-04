@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tech_blog/gen/assets.gen.dart';
+import 'package:tech_blog/splash_screen.dart';
 import 'package:tech_blog/theme/app_theme.dart';
 
 void main() {
@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
     GlobalWidgetsLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
   ],
-  supportedLocales: [
+  supportedLocales: const [
     Locale('fa'), // farsi
   ],
-      home: Scaffold(body: Center(child: Assets.images.logo.image()),),
+      home: const SplashScreen()
     );
   }
 }
