@@ -60,9 +60,9 @@ class AppThemes {
           fontWeight: FontWeight.w300),
       displaySmall: TextStyle(
           fontFamily: 'IranYekan',
-          fontSize: 14,
+          fontSize: 16,
           color: SolidColors.seeMore,
-          fontWeight: FontWeight.w700),
+          fontWeight: FontWeight.w900),
       headlineMedium: TextStyle(
           fontFamily: 'IranYekan',
           fontSize: 14,
