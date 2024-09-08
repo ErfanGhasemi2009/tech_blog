@@ -2,16 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/screens/content_home_screen.dart';
+import 'package:tech_blog/screens/profile_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int selectedTab = 0;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: SolidColors.surface,
-        surfaceTintColor: SolidColors.surface,
+        elevation: 0,
+        backgroundColor: SolidColors.scaffoldBg,
+        surfaceTintColor: SolidColors.scaffoldBg,
         title: Padding(
           padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
           child: Row(
@@ -27,50 +37,81 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            ContentHomeScreen(size: size),
-            
+            Positioned.fill(
+                child: IndexedStack(
+              index: selectedTab,
+              children: [
+                ContentHomeScreen(size: size),
+                ProfileScreen(
+                  size: size,
+                )
+              ],
+            )),
             // bottomNavigation app
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: size.height / 8,
-                padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: GradientColors.bottomNavBackground,
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)),
-                child: Container(
-                  height: size.height / 9,
-                  margin: const EdgeInsets.only(right: 32, left: 32, bottom: 16),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18),
-                      gradient: const LinearGradient(
-                          colors: GradientColors.bottomNav)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                          onPressed: () {},
-                          icon: Assets.icons.home
-                              .image(color: SolidColors.lightIcon)),
-                      IconButton(
-                          onPressed: () {},
-                          icon: Assets.icons.write
-                              .image(color: SolidColors.lightIcon)),
-                      IconButton(
-                          onPressed: () {},
-                          icon: Assets.icons.user
-                              .image(color: SolidColors.lightIcon)),
-                    ],
-                  ),
-                ),
-              ),
+            BottomNavigationHomeScreen(
+              size: size,
+              changeBodyHomeScreen: (value) {
+                setState(() {
+                  selectedTab = value;
+                });
+              },
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class BottomNavigationHomeScreen extends StatelessWidget {
+  const BottomNavigationHomeScreen({
+    super.key,
+    required this.size,
+    required this.changeBodyHomeScreen,
+  });
+
+  final Size size;
+  final Function(int) changeBodyHomeScreen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      left: 0,
+      right: 0,
+      child: Container(
+        height: size.height / 8,
+        padding: const EdgeInsets.all(8),
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: GradientColors.bottomNavBackground,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
+        child: Container(
+          height: size.height / 9,
+          margin: const EdgeInsets.only(right: 32, left: 32, bottom: 16),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(18),
+              gradient: const LinearGradient(colors: GradientColors.bottomNav)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    changeBodyHomeScreen(0);
+                  },
+                  icon: Assets.icons.home.image(color: SolidColors.lightIcon)),
+              IconButton(
+                  onPressed: () {},
+                  icon: Assets.icons.write.image(color: SolidColors.lightIcon)),
+              IconButton(
+                  onPressed: () {
+                    changeBodyHomeScreen(1);
+                  },
+                  icon: Assets.icons.user.image(color: SolidColors.lightIcon)),
+            ],
+          ),
         ),
       ),
     );
