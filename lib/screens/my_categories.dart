@@ -5,7 +5,6 @@ import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/constant/my_component.dart';
 import 'package:tech_blog/constant/strings.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/models/hash_tag_model.dart';
 import 'package:tech_blog/models/test_data.dart';
 
 class MyCategories extends StatefulWidget {
@@ -91,8 +90,10 @@ class _MyCategoriesState extends State<MyCategories> {
                       return InkWell(
                           onTap: () {
                             setState(() {
-                              selectedTags.add(
-                                  HashTagModel(title: tagList[index].title));
+                              if (!selectedTags.contains(tagList[index])) {
+                                selectedTags.add
+                                    (tagList[index]);
+                              }
                             });
                           },
                           child: TagItemHomeScreen(
@@ -121,27 +122,26 @@ class _MyCategoriesState extends State<MyCategories> {
                           padding:
                               EdgeInsets.fromLTRB(4, 8, index == 0 ? 32 : 4, 8),
                           child: Container(
-                            padding:
-                                const EdgeInsets.only(right: 16, left: 16),
+                            padding: const EdgeInsets.only(right: 16, left: 16),
                             height: 50,
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                      color: SolidColors.dividerColor.withOpacity(0.4),
-                                      blurRadius: 10
-                                      )
+                                      color: SolidColors.dividerColor
+                                          .withOpacity(0.4),
+                                      blurRadius: 10)
                                 ],
                                 borderRadius: BorderRadius.circular(18),
                                 color: SolidColors.surface),
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(4, 4, 4, 4),
+                              padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
                               child: Row(
                                 children: [
                                   GestureDetector(
                                       onTap: () {
                                         setState(() {
-                                          selectedTags.remove(selectedTags[index]);
+                                          selectedTags
+                                              .remove(selectedTags[index]);
                                         });
                                       },
                                       child: const Icon(
