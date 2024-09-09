@@ -13,8 +13,8 @@ class AppThemes {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        textStyle: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
+        textStyle: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.pressed)) {
             return const TextStyle(
               fontSize: 16,
               fontFamily: 'IranYekan',
@@ -29,9 +29,9 @@ class AppThemes {
             color: SolidColors.posterSubTitle,
           );
         }),
-        backgroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return SolidColors.seeMore;
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.pressed)) {
+            return SolidColors.primaryColor.withOpacity(0.8);
           }
           return SolidColors.primaryColor;
         }),

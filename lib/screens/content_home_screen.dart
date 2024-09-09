@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_blog/constant/colors.dart';
+import 'package:tech_blog/constant/my_component.dart';
 import 'package:tech_blog/constant/strings.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/models/test_data.dart';
@@ -35,7 +36,10 @@ class ContentHomeScreen extends StatelessWidget {
             height: 12,
           ),
           //popular articles
-          TitleListHomeScreen(title: MyStrings.viewHotestBlog, icon: Assets.icons.bluePen.image(height: 16, width: 16),),
+          TitleListHomeScreen(
+            title: MyStrings.viewHotestBlog,
+            icon: Assets.icons.bluePen.image(height: 16, width: 16),
+          ),
           //articles list
           ArticleListHomeScreen(size: size),
 
@@ -49,7 +53,9 @@ class ContentHomeScreen extends StatelessWidget {
             height: 8,
           ),
           PodcastListHomeScreen(size: size),
-          const SizedBox(height: 96,)
+          const SizedBox(
+            height: 96,
+          )
         ],
       ),
     );
@@ -77,7 +83,7 @@ class PodcastListHomeScreen extends StatelessWidget {
               return Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.all(8),
+                    margin: const EdgeInsets.all(8),
                     width: size.width / 2.4,
                     height: size.height / 5.6,
                     decoration: BoxDecoration(
@@ -150,15 +156,11 @@ class ArticleListHomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(blogList[index].writer,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displayMedium),
+                            style: Theme.of(context).textTheme.displayMedium),
                         Row(
                           children: [
                             Text(blogList[index].views,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium),
+                                style: Theme.of(context).textTheme.titleMedium),
                             const SizedBox(
                               width: 4,
                             ),
@@ -183,8 +185,7 @@ class ArticleListHomeScreen extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineMedium!
-                                .copyWith(
-                                    fontSize: 16, color: Colors.black),
+                                .copyWith(fontSize: 16, color: Colors.black),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           )),
@@ -200,7 +201,9 @@ class ArticleListHomeScreen extends StatelessWidget {
 
 class TitleListHomeScreen extends StatelessWidget {
   const TitleListHomeScreen({
-    super.key, required this.title, required this.icon,
+    super.key,
+    required this.title,
+    required this.icon,
   });
   final String title;
   final Image icon;
@@ -241,33 +244,13 @@ class TagListHomeScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: EdgeInsets.fromLTRB(4, 8, index == 0 ? 32 : 4, 8),
-              child: Container(
-                padding: const EdgeInsets.only(right: 16, left: 16),
-                height: 50,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                    gradient: const LinearGradient(
-                        colors: GradientColors.tags,
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft)),
-                child: Row(
-                  children: [
-                    Assets.icons.hashtagicon.image(width: 16, height: 16),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      tagList[index].title,
-                      style: Theme.of(context).textTheme.displayMedium,
-                    )
-                  ],
-                ),
-              ),
+              child: TagItemHomeScreen(titleItem: tagList[index].title,),
             );
           }),
     );
   }
 }
+
 
 class PosterHomeScreen extends StatelessWidget {
   const PosterHomeScreen({
@@ -291,7 +274,7 @@ class PosterHomeScreen extends StatelessWidget {
         Container(
           width: size.width / 1.25,
           height: size.height / 4.2,
-          padding: EdgeInsets.fromLTRB(0, 0, 0, 24),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               gradient: const LinearGradient(

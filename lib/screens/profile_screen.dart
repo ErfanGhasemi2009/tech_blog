@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_blog/constant/my_component.dart';
 import 'package:tech_blog/constant/strings.dart';
@@ -6,9 +5,9 @@ import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/screens/content_home_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final size;
+  final Size size;
 
-  const ProfileScreen({super.key, this.size});
+  const ProfileScreen({super.key, required this.size});
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
