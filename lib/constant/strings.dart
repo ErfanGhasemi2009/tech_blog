@@ -65,8 +65,8 @@ www.sasansafari.com
   static String writePodcast = "write podcast";
   static String titleArticleText = "مقالات";
   static String userProfile = "پروفایل کاربری";
-  static String aboutTec = "درباره تکبلاگ";
-  static String shareTec = "اشتراک گذاری تک بلاگ";
+  static String aboutTec = "درباره تک‌بلاگ";
+  static String shareTec = "اشتراک گذاری تک‌بلاگ";
   static String tecIngithub = "تک‌بلاگ در گیت هاب";
   static String shareKnowledge = "دونسته هات رو با بقیه به اشتراک بذار ...";
   static String gigTech = """

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tech_blog/screens/register_intro.dart';
+import 'package:tech_blog/screens/home_screen.dart';
 import 'package:tech_blog/theme/app_theme.dart';
 
 void main() {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   supportedLocales: const [
     Locale('fa'), // farsi
   ],
-      home: const RegisterIntro()
+      home: const HomeScreen()
     );
   }
 }
