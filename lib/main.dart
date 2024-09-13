@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   supportedLocales: const [
     Locale('fa'), // farsi
   ],
-      home: const HomeScreen()
+      home:  const HomeScreen()
     );
   }
 }

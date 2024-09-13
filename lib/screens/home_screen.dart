@@ -1,22 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/constant/strings.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/screens/content_home_screen.dart';
 import 'package:tech_blog/screens/profile_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
 final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
-
-class _HomeScreenState extends State<HomeScreen> {
-  int selectedTab = 0;
+  RxInt selectedTab = 0.obs;
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,29 +84,29 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: SafeArea(
-        child: Stack(
-          children: [
-            Positioned.fill(
-                child: IndexedStack(
-              index: selectedTab,
-              children: [
-                ContentHomeScreen(size: size),
-                ProfileScreen(
-                  size: size,
-                )
-              ],
-            )),
-            // bottomNavigation app
-            BottomNavigationHomeScreen(
-              size: size,
-              changeBodyHomeScreen: (value) {
-                setState(() {
-                  selectedTab = value;
-                });
-              },
-            )
-          ],
-        ),
+        child: Obx(() {
+          return Stack(
+            children: [
+              Positioned.fill(
+                  child: IndexedStack(
+                index: selectedTab.value,
+                children: [
+                  ContentHomeScreen(size: size),
+                  ProfileScreen(
+                    size: size,
+                  )
+                ],
+              )),
+              // bottomNavigation app
+              BottomNavigationHomeScreen(
+                size: size,
+                changeBodyHomeScreen: (value) {
+                  selectedTab.value = value;
+                },
+              )
+            ],
+          );
+        }),
       ),
     );
   }
