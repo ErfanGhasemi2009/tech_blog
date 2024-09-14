@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TechDivider extends StatelessWidget {
   const TechDivider({
@@ -14,16 +17,16 @@ class TechDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Divider(
       thickness: 1.2,
-      indent: size.width/6,
-      endIndent: size.width/6,
+      indent: size.width / 6,
+      endIndent: size.width / 6,
     );
   }
 }
 
 class TagItemHomeScreen extends StatelessWidget {
   const TagItemHomeScreen({
-    super.key, required this.titleItem,
-    
+    super.key,
+    required this.titleItem,
   });
 
   final String titleItem;
@@ -51,5 +54,19 @@ class TagItemHomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+
+Future<void> myLaunchUrl(String url) async {
+  final Uri uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    try {
+      await launchUrl(uri, mode: LaunchMode.platformDefault);
+    } catch (e) {
+      log("Failed to launch $url: $e");
+    }
+  } else {
+    log("Could not launch ${uri.toString()}");
   }
 }

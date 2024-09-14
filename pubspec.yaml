@@ -44,6 +44,8 @@ dependencies:
   validators: ^3.0.0
   get: ^4.6.6
   share_plus: ^10.0.2
+  url_launcher: ^6.3.0
+  dio: ^5.7.0
 
 dev_dependencies:
   build_runner:
