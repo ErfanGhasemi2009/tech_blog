@@ -87,8 +87,9 @@ class LoadingAnimation extends StatelessWidget {
 
 AppBar appbar(BuildContext context, String title) {
   return AppBar(
-    elevation: 0,
-    backgroundColor: Colors.transparent,
+    elevation: 3,
+    backgroundColor: SolidColors.scaffoldBg,
+    surfaceTintColor: SolidColors.scaffoldBg,
     actions: [
       Padding(
         padding: const EdgeInsets.only(left: 24),
