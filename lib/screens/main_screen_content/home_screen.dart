@@ -1,17 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/constant/my_component.dart';
 import 'package:tech_blog/constant/strings.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/screens/content_home_screen.dart';
-import 'package:tech_blog/screens/profile_screen.dart';
+import 'package:tech_blog/screens/main_screen_content/content_home_screen.dart';
+import 'package:tech_blog/screens/main_screen_content/profile_screen.dart';
 
 final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
 RxInt selectedTab = 0.obs;
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

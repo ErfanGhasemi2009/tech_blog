@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -68,5 +69,19 @@ Future<void> myLaunchUrl(String url) async {
     }
   } else {
     log("Could not launch ${uri.toString()}");
+  }
+}
+
+class LoadingAnimation extends StatelessWidget {
+  const LoadingAnimation({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitThreeBounce(
+      color: SolidColors.primaryColor,
+      size: 32,
+    );
   }
 }
