@@ -58,7 +58,6 @@ class TagItemHomeScreen extends StatelessWidget {
   }
 }
 
-
 Future<void> myLaunchUrl(String url) async {
   final Uri uri = Uri.parse(url);
   if (await canLaunchUrl(uri)) {
@@ -84,4 +83,32 @@ class LoadingAnimation extends StatelessWidget {
       size: 32,
     );
   }
+}
+
+AppBar appbar(BuildContext context, String title) {
+  return AppBar(
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+    actions: [
+      Padding(
+        padding: const EdgeInsets.only(left: 24),
+        child: Text(
+          title,
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium!
+              .copyWith(fontSize: 20),
+        ),
+      )
+    ],
+    leading: Container(
+      margin: const EdgeInsets.only(right: 12),
+      decoration: const BoxDecoration(
+          shape: BoxShape.circle, color: SolidColors.primaryColor),
+      child: const Icon(
+        Icons.arrow_back_rounded,
+        color: Colors.white,
+      ),
+    ),
+  );
 }
