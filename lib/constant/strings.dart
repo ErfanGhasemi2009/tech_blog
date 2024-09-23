@@ -38,7 +38,7 @@ www.sasansafari.com
 لطفا اطلاعات ثبت نام رو کامل کن
 """;
 
-  static String titltArrticle =
+  static String titelArticle =
       'اینجا عنوان مقاله قرار میگیره ، یه عنوان جذاب انتخاب کن';
 
   static String editOrginalTextArticle = """

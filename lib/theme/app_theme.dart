@@ -46,6 +46,12 @@ class AppThemes {
           fontSize: 16,
           fontWeight: FontWeight.w700,
           color: SolidColors.posterTitle),
+          titleLarge: TextStyle(
+            fontFamily: 'IranYekan',
+            fontSize: 18,
+            fontWeight: FontWeight.w900,
+            color: Colors.black
+          ),
       titleMedium: TextStyle(
           fontFamily: 'IranYekan',
           fontSize: 14,
