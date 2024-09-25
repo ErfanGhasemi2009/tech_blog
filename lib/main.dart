@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tech_blog/screens/article_list_screen.dart';
+import 'package:tech_blog/screens/splash_screen.dart';
 import 'package:tech_blog/theme/app_theme.dart';
 
 void main() {
@@ -17,6 +17,6 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: AppThemes.lightTheme,
         locale: const Locale('fa'),
-        home:  ArticleListScreen());
+        home:  const SplashScreen());
   }
 }

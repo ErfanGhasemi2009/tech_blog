@@ -5,10 +5,10 @@ import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/constant/my_component.dart';
 import 'package:tech_blog/controller/article_controller.dart';
 import 'package:tech_blog/controller/singel_article_controller.dart';
-import 'package:tech_blog/screens/single_article_screen.dart';
 
 class ArticleListScreen extends StatelessWidget {
-  ArticleListScreen({super.key});
+  ArticleListScreen({super.key, required this.titleAppbar});
+  final String titleAppbar;
   final ArticleController articleController = Get.put(ArticleController());
   final SingleArticleController singleArticleController =
       Get.put(SingleArticleController());
@@ -16,7 +16,7 @@ class ArticleListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: appbar(context, 'لیست مقاله ها'),
+      appBar: appbar(context, titleAppbar),
       body: SafeArea(
           child: Obx(() => SizedBox(
                 child: ListView.builder(
@@ -25,9 +25,7 @@ class ArticleListScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        singleArticleController.id.value = int.parse(
-                            articleController.articleList[index].id.toString());
-                        Get.to(SingleArticleScreen());
+                        singleArticleController.getArticleInfo(articleController.articleList[index].id);
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),

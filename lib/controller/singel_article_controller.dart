@@ -3,6 +3,7 @@ import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/models/article_info_model.dart';
 import 'package:tech_blog/models/article_model.dart';
 import 'package:tech_blog/models/tags_model.dart';
+import 'package:tech_blog/screens/single_article_screen.dart';
 import 'package:tech_blog/services/dio_services.dart';
 
 class SingleArticleController extends GetxController {
@@ -12,7 +13,8 @@ class SingleArticleController extends GetxController {
   RxList<TagsModel> tagList = RxList();
   RxList<ArticleModel> relatedList = RxList();
 
-  getArticleInfo() async {
+  getArticleInfo(var id) async {
+    articleInfoModel = ArticleInfoModel().obs;
     loading.value = true;
     var userId = '';
     // ignore: todo
@@ -35,5 +37,7 @@ class SingleArticleController extends GetxController {
     response.data['related'].forEach((element) {
       relatedList.add(ArticleModel.fromJson(element));
     });
+
+    Get.to(const SingleArticleScreen());
   }
 }
