@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/constant/strings.dart';
+import 'package:tech_blog/controller/register_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/screens/my_categories.dart';
 import 'package:validators/validators.dart';
 
 class RegisterIntro extends StatelessWidget {
-  const RegisterIntro({super.key});
+  RegisterIntro({super.key});
 
+  final RegisterController registerController = Get.find<RegisterController>();
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -90,7 +92,7 @@ class RegisterIntro extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(32),
                   child: TextField(
-
+                    controller: registerController.emailTextEditingController,
                     onChanged: (value) {
                       emailIsReal = isEmail(value);
                     },
@@ -111,10 +113,11 @@ class RegisterIntro extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () {
                       if (emailIsReal) {
+                        registerController.register();
                         Navigator.of(context).pop();
                         _showBtnSheetActivator(context, size);
                       } else {
-                        //TODO: create a snackbar to show the error to user
+                        Get.snackbar('email textfield', 'email is not valid');
                       }
                     },
                     child: Padding(
@@ -165,11 +168,11 @@ class RegisterIntro extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(32),
                   child: TextField(
+                    controller:
+                        registerController.activeCodeTextEditingController,
                     maxLength: 6,
                     onChanged: (value) {
-                      print(value +
-                          ' is numeric: ' +
-                          isNumeric(value).toString());
+                      print('$value is numeric: ${isNumeric(value)}');
                     },
                     textAlign: TextAlign.center,
                     maxLines: 1,
@@ -187,9 +190,10 @@ class RegisterIntro extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      registerController.verify();
+                      /* Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => const MyCategories(),
-                      ));
+                      )); */
                     },
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),

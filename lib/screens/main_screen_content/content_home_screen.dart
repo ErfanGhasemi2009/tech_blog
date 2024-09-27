@@ -9,7 +9,7 @@ import 'package:tech_blog/controller/article_controller.dart';
 import 'package:tech_blog/controller/home_screen_controller.dart';
 import 'package:tech_blog/controller/singel_article_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/screens/article_list_screen.dart';
+import 'package:tech_blog/screens/articles/article_list_screen.dart';
 
 class ContentHomeScreen extends StatelessWidget {
   ContentHomeScreen({

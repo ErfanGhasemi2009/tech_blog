@@ -9,7 +9,7 @@ import 'package:tech_blog/constant/strings.dart';
 import 'package:tech_blog/controller/article_controller.dart';
 import 'package:tech_blog/controller/singel_article_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/screens/article_list_screen.dart';
+import 'package:tech_blog/screens/articles/article_list_screen.dart';
 import 'package:tech_blog/screens/main_screen_content/content_home_screen.dart';
 
 class SingleArticleScreen extends StatefulWidget {

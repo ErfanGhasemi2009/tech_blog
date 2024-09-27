@@ -3,7 +3,7 @@ import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/models/article_info_model.dart';
 import 'package:tech_blog/models/article_model.dart';
 import 'package:tech_blog/models/tags_model.dart';
-import 'package:tech_blog/screens/single_article_screen.dart';
+import 'package:tech_blog/screens/articles/single_article_screen.dart';
 import 'package:tech_blog/services/dio_services.dart';
 
 class SingleArticleController extends GetxController {

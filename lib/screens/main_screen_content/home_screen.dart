@@ -4,13 +4,13 @@ import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/constant/my_component.dart';
 import 'package:tech_blog/constant/strings.dart';
+import 'package:tech_blog/controller/register_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/screens/main_screen_content/content_home_screen.dart';
 import 'package:tech_blog/screens/main_screen_content/profile_screen.dart';
 
 final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
 RxInt selectedTab = 0.obs;
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                 height: 32,
               ),
               TabRowDrawerHomeScreen(
-                onTap: () async{
+                onTap: () async {
                   await myLaunchUrl(MyStrings.techBlogGithubUrl);
                 },
                 title: MyStrings.tecIngithub,
@@ -161,7 +161,6 @@ class BottomNavigationHomeScreen extends StatelessWidget {
 
   final Size size;
   final Function(int) changeBodyHomeScreen;
-
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -192,7 +191,9 @@ class BottomNavigationHomeScreen extends StatelessWidget {
                   },
                   icon: Assets.icons.home.image(color: SolidColors.lightIcon)),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.find<RegisterController>().toggleLogin();
+                  },
                   icon: Assets.icons.write.image(color: SolidColors.lightIcon)),
               IconButton(
                   onPressed: () {
