@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -102,13 +103,18 @@ AppBar appbar(BuildContext context, String title) {
         ),
       )
     ],
-    leading: Container(
-      margin: const EdgeInsets.only(right: 12),
-      decoration: const BoxDecoration(
-          shape: BoxShape.circle, color: SolidColors.primaryColor),
-      child: const Icon(
-        Icons.arrow_back_rounded,
-        color: Colors.white,
+    leading: GestureDetector(
+      onTap: () {
+        Get.back();
+      },
+      child: Container(
+        margin: const EdgeInsets.only(right: 12),
+        decoration: const BoxDecoration(
+            shape: BoxShape.circle, color: SolidColors.primaryColor),
+        child: const Icon(
+          Icons.arrow_back_rounded,
+          color: Colors.white,
+        ),
       ),
     ),
   );

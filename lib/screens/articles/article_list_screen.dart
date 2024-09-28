@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/constant/my_component.dart';
-import 'package:tech_blog/controller/article_controller.dart';
-import 'package:tech_blog/controller/singel_article_controller.dart';
+import 'package:tech_blog/controller/article_controllers/article_controller.dart';
+import 'package:tech_blog/controller/article_controllers/singel_article_controller.dart';
 
 class ArticleListScreen extends StatelessWidget {
   ArticleListScreen({super.key, required this.titleAppbar});

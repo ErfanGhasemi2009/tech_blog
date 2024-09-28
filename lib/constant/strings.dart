@@ -79,7 +79,7 @@ www.sasansafari.com
   static String exit = "خروج";
   static String cancel = "لغو";
   static String error = "خطا";
-  static String errorText = "Eror";
+  static String errorText = "Error";
   static String youAlreadyLeft = "قبلا خارج شدی !!";
   static String areYouSureExit = "آیا از خروج خود مطمئن هستید ؟";
   static String addNewPodcast = "اضافه کردن یک پادکست جدید";
