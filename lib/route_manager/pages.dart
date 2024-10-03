@@ -2,6 +2,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:tech_blog/route_manager/binding.dart';
 import 'package:tech_blog/route_manager/names.dart';
 import 'package:tech_blog/screens/articles/manage_article.dart';
+import 'package:tech_blog/screens/articles/single_article_manage.dart';
 import 'package:tech_blog/screens/articles/single_article_screen.dart';
 import 'package:tech_blog/screens/main_screen_content/home_screen.dart';
 import 'package:tech_blog/screens/splash_screen.dart';
@@ -27,10 +28,10 @@ class Pages{
               name: NamedRoute.manageArticle,
               page: () => ManageArticle(),
               binding: ArticleManagerBinding()),
-          // GetPage(
-          //     name: NamedRoute.singleManageArticle,
-          //     page: () => SingleManageArticle(),
-          //     binding: ArticleManagerBinding()),
+          GetPage(
+              name: NamedRoute.singleManageArticle,
+              page: () => SingleManageArticle(),
+              binding: ArticleManagerBinding()),
           // GetPage(
           //     name: NamedRoute.singlePodcast,
           //     page: () => PodcastSingle(),

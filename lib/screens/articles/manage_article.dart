@@ -2,10 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/colors.dart';
-import 'package:tech_blog/constant/my_component.dart';
+import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/constant/strings.dart';
 import 'package:tech_blog/controller/article_controllers/manage_article_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
+import 'package:tech_blog/route_manager/names.dart';
 
 class ManageArticle extends StatelessWidget {
   ManageArticle({super.key});
@@ -16,31 +17,33 @@ class ManageArticle extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 8, top: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-                  onPressed: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                    child: Text(
-                      MyStrings.textManageArticle,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(fontSize: 20),
-                    ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 8, top: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Get.toNamed(NamedRoute.singleManageArticle);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                  child: Text(
+                    MyStrings.textManageArticle,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(fontSize: 20),
                   ),
                 ),
-          ],
+              ),
+            ],
+          ),
         ),
-      ),
         appBar: appbar(context, MyStrings.titleAppBarManageArticle),
         body: SafeArea(
           child: Obx(
-            ()=> manageArticleController.articleList.isNotEmpty
+            () => manageArticleController.articleList.isNotEmpty
                 ? Obx(() => SizedBox(
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
@@ -73,8 +76,8 @@ class ManageArticle extends StatelessWidget {
                                       placeholder: (context, url) =>
                                           const LoadingAnimation(),
                                       errorWidget: (context, url, error) =>
-                                          const Icon(
-                                              Icons.image_not_supported_outlined),
+                                          const Icon(Icons
+                                              .image_not_supported_outlined),
                                     ),
                                   ),
                                   Expanded(
@@ -111,7 +114,8 @@ class ManageArticle extends StatelessWidget {
                                                 children: [
                                                   Text(
                                                     manageArticleController
-                                                        .articleList[index].view!,
+                                                        .articleList[index]
+                                                        .view!,
                                                     style: Theme.of(context)
                                                         .textTheme
                                                         .headlineSmall,
@@ -120,7 +124,8 @@ class ManageArticle extends StatelessWidget {
                                                     width: 4,
                                                   ),
                                                   const Icon(
-                                                    Icons.remove_red_eye_outlined,
+                                                    Icons
+                                                        .remove_red_eye_outlined,
                                                     color: SolidColors.hintText,
                                                     size: 16,
                                                   ),

@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:tech_blog/component/dimens.dart';
 import 'package:tech_blog/constant/colors.dart';
+import 'package:tech_blog/controller/article_controllers/manage_article_controller.dart';
+import 'package:tech_blog/controller/home_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -118,4 +121,60 @@ AppBar appbar(BuildContext context, String title) {
       ),
     ),
   );
+}
+// ignore: must_be_immutable
+class Cats extends StatelessWidget {
+  Cats(
+      {super.key,
+      required this.homeScreenController,
+      required this.manageArticleController,
+      required this.textTheme});
+
+  final HomeScreenController homeScreenController;
+  final ManageArticleController manageArticleController;
+  TextTheme textTheme;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: Get.height / 1.7,
+      child: GridView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: homeScreenController.tagList.length,
+        itemBuilder: ((context, index) {
+          return GestureDetector(
+            onTap: () async {
+              manageArticleController.articleInfoModel.update((val) {
+                val?.catName = homeScreenController.tagList[index].title!;
+                val?.catId = homeScreenController.tagList[index].id!;
+              });
+              Get.back();
+            },
+            child: Padding(
+              padding: EdgeInsets.only(left: Dimens.small),
+              child: Container(
+                height: Dimens.large - 2,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(24)),
+                    color: SolidColors.primaryColor),
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        Dimens.small, Dimens.small, Dimens.small, Dimens.small),
+                    child: Center(
+                      child: Text(
+                        homeScreenController.tagList[index].title!,
+                        style: textTheme.headlineMedium,
+                      ),
+                    )),
+              ),
+            ),
+          );
+        }),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 5,
+          mainAxisSpacing: 5,
+        ),
+      ),
+    );
+  }
 }

@@ -13,7 +13,7 @@ class ArticleInfoModel {
   String? createdAt;
   bool? isFavorite;
 
-  ArticleInfoModel(
+  ArticleInfoModel(titltArrticle, editOrginalTextArticle, s
   );
 
   ArticleInfoModel.fromJson(Map<String, dynamic> element) {

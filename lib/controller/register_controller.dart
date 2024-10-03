@@ -1,7 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:tech_blog/component/dimens.dart';
 import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/constant/colors.dart';
 import 'package:tech_blog/constant/storage_const.dart';
@@ -49,12 +52,12 @@ class RegisterController extends GetxController {
 
     switch (status) {
       case 'verified':
-        var box = GetStorage();
-        box.write('token', response.data['token']);
-        box.write(StorageKey.userId, response.data['user_id']);
+        // var box = GetStorage();
+        BoxStorage.box.write(StorageKey.token, response.data['token']);
+        BoxStorage.box.write(StorageKey.userId, response.data['user_id']);
 
-        debugPrint("read::: " + box.read(StorageKey.token));
-        debugPrint("read::: " + box.read(StorageKey.userId));
+        debugPrint("read::: " + BoxStorage.box.read(StorageKey.token));
+        debugPrint("read::: " + BoxStorage.box.read(StorageKey.userId));
 
         Get.offAll(const HomeScreen());
 
@@ -69,43 +72,40 @@ class RegisterController extends GetxController {
   }
 
   toggleLogin() {
-    if (GetStorage().read(StorageKey.token) != null) {
+    if (GetStorage().read(StorageKey.token) == null) {
       Get.to(RegisterIntro());
     } else {
       routeToWriteBottomSheet();
     }
   }
-}
 
-class Storagekey {
-}
-
-routeToWriteBottomSheet() {
+  routeToWriteBottomSheet() {
     Get.bottomSheet(Container(
       height: Get.height / 3,
-      decoration:  const BoxDecoration(
+      decoration: BoxDecoration(
           color: SolidColors.lightText,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+              topLeft: Radius.circular(Dimens.medium + 4),
+              topRight: Radius.circular(Dimens.medium + 4))),
       child: Padding(
-        padding:  const EdgeInsets.all(16),
+        padding: EdgeInsets.all(Dimens.medium),
         child: Column(children: [
           Row(
             children: [
               SvgPicture.asset(
                 Assets.icons.tcbot,
-                height: 40,
+                height: Dimens.large + 8,
               ),
-               const SizedBox(
-                width: 8,
+              SizedBox(
+                width: Dimens.small,
               ),
-               Text(MyStrings.shareKnowledge)
+              Text(MyStrings.shareKnowledge)
             ],
           ),
-           const SizedBox(
-            height: 8,
+          SizedBox(
+            height: Dimens.small,
           ),
-           Text(MyStrings.gigTech),
+          Text(MyStrings.gigTech),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -120,12 +120,12 @@ routeToWriteBottomSheet() {
                     children: [
                       Image.asset(
                         Assets.icons.writeArticleIcon.path,
-                        height: 36,
+                        height: Dimens.large,
                       ),
-                       const SizedBox(
-                        width: 8,
+                      SizedBox(
+                        width: Dimens.small,
                       ),
-                       Text(MyStrings.titleAppBarManageArticle)
+                      Text(MyStrings.titleAppBarManageArticle)
                     ],
                   ),
                 ),
@@ -141,12 +141,12 @@ routeToWriteBottomSheet() {
                     children: [
                       Image.asset(
                         Assets.icons.writePodcastIcon.path,
-                        height:36,
+                        height: Dimens.large,
                       ),
-                       const SizedBox(
-                        width:8,
+                      SizedBox(
+                        width: Dimens.small,
                       ),
-                       Text(MyStrings.managePodcast)
+                      Text(MyStrings.managePodcast)
                     ],
                   ),
                 ),
@@ -157,3 +157,4 @@ routeToWriteBottomSheet() {
       ),
     ));
   }
+}

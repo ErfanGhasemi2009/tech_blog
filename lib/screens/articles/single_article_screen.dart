@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/colors.dart';
-import 'package:tech_blog/constant/my_component.dart';
+import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/constant/strings.dart';
 import 'package:tech_blog/controller/article_controllers/article_controller.dart';
 import 'package:tech_blog/controller/article_controllers/singel_article_controller.dart';
@@ -70,7 +70,9 @@ class _SingleArticleScreenState extends State<SingleArticleScreen> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.back();
+                                      },
                                       icon: const Icon(
                                         Icons.arrow_back_rounded,
                                         color: Colors.white,

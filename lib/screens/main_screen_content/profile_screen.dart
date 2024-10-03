@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tech_blog/constant/my_component.dart';
+import 'package:tech_blog/component/my_component.dart';
 import 'package:tech_blog/constant/strings.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/screens/main_screen_content/content_home_screen.dart';
